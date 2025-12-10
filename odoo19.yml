@@ -1,0 +1,23 @@
+name: odoo19
+services:
+  web:
+    image: odoo:19
+    depends_on:
+      - db
+    ports:
+      - "18069:8069"
+    volumes:
+      - data_web:/var/lib/odoo
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: postgres 
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    ports:
+      - "15432:5432"
+    volumes:
+      - data_db:/var/lib/postgresql/data
+volumes:
+  data_web:
+  data_db:
